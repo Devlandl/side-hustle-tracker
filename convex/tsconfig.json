@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ES2021", "dom"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@convex/_generated/api": ["./_generated/api"],
+      "@convex/_generated/api.d.ts": ["./_generated/api.d.ts"]
+    }
+  },
+  "include": ["./**/*"],
+  "exclude": ["node_modules"]
+}
