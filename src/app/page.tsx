@@ -30,6 +30,30 @@ const features = [
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-brand-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "Side Hustle Tracker",
+            applicationCategory: "FinanceApplication",
+            operatingSystem: "Web",
+            offers: {
+              "@type": "Offer",
+              price: "14.00",
+              priceCurrency: "USD",
+            },
+            description:
+              "Track income across multiple side hustles, log expenses, estimate quarterly taxes, and hit your earnings goals.",
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "5",
+              ratingCount: "1",
+            },
+          }),
+        }}
+      />
       {/* Hero */}
       <header className="relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 py-20 text-center">
