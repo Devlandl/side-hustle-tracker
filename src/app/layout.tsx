@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   title: "Side Hustle Tracker - Track Every Dollar From Every Hustle",
   description:
     "Track income across multiple side hustles, log expenses, estimate quarterly taxes, and hit your earnings goals.",
+  manifest: "/manifest.json",
+  themeColor: "#C9A84C",
 };
 
 export default function RootLayout({
