@@ -7,7 +7,6 @@ import ProgressBar from "@/components/ui/progress-bar";
 import CurrencyInput from "@/components/ui/currency-input";
 import EmptyState from "@/components/ui/empty-state";
 import {
-  formatCurrency,
   getStartOfMonth,
   getStartOfYear,
   getTodayString,
