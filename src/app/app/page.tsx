@@ -51,10 +51,60 @@ export default function DashboardPage() {
     (g) => !g.hustleId && g.period === (period === "year" ? "yearly" : "monthly")
   );
 
+  const activeGoalsCount = goals?.filter((g) => g.targetAmount > 0).length ?? 0;
+
   if (activeHustles.length === 0) {
     return (
-      <div className="p-4 md:p-6">
-        <h1 className="text-2xl font-bold text-brand-white mb-6">Dashboard</h1>
+      <div className="p-4 md:p-6 space-y-8">
+        {/* Welcome Header */}
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold text-brand-white">
+            Welcome to Side Hustle Tracker
+          </h1>
+          <p className="text-brand-muted mt-1">
+            Track every dollar from every hustle
+          </p>
+        </div>
+
+        {/* How It Works */}
+        <div>
+          <h2 className="text-lg font-semibold text-brand-white mb-4">
+            How It Works
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {[
+              {
+                step: 1,
+                title: "Add Hustles",
+                desc: "Create your income streams and start logging",
+              },
+              {
+                step: 2,
+                title: "Track Money",
+                desc: "Log income and expenses for each hustle",
+              },
+              {
+                step: 3,
+                title: "Stay Ready",
+                desc: "Set goals, track taxes, export reports",
+              },
+            ].map((item) => (
+              <div
+                key={item.step}
+                className="bg-brand-card border border-brand-border rounded-xl p-5 flex flex-col items-center text-center"
+              >
+                <span className="w-10 h-10 rounded-full bg-brand-gold/20 text-brand-gold font-bold text-lg flex items-center justify-center mb-3">
+                  {item.step}
+                </span>
+                <p className="font-semibold text-brand-white mb-1">
+                  {item.title}
+                </p>
+                <p className="text-brand-muted text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <EmptyState
           emoji="💸"
           title="No hustles yet"
@@ -67,9 +117,88 @@ export default function DashboardPage() {
 
   return (
     <div className="p-4 md:p-6 space-y-6">
-      {/* Header */}
+      {/* Welcome Header */}
+      <div>
+        <h1 className="text-2xl md:text-3xl font-bold text-brand-white">
+          Welcome to Side Hustle Tracker
+        </h1>
+        <p className="text-brand-muted mt-1">
+          Track every dollar from every hustle
+        </p>
+      </div>
+
+      {/* Quick Stats */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="bg-brand-card border border-brand-border rounded-xl p-4">
+          <p className="text-brand-muted text-xs mb-1">Active Hustles</p>
+          <p className="text-2xl font-bold text-brand-gold">
+            {activeHustles.length}
+          </p>
+        </div>
+        <div className="bg-brand-card border border-brand-border rounded-xl p-4">
+          <p className="text-brand-muted text-xs mb-1">This Month Income</p>
+          <p className="text-2xl font-bold text-green-400">
+            {formatCurrency(incomeTotals.total)}
+          </p>
+        </div>
+        <div className="bg-brand-card border border-brand-border rounded-xl p-4">
+          <p className="text-brand-muted text-xs mb-1">Tax Jar</p>
+          <p className="text-2xl font-bold text-brand-white">
+            {formatCurrency(taxOwed)}
+          </p>
+        </div>
+        <div className="bg-brand-card border border-brand-border rounded-xl p-4">
+          <p className="text-brand-muted text-xs mb-1">Goals</p>
+          <p className="text-2xl font-bold text-brand-gold-light">
+            {activeGoalsCount}
+          </p>
+        </div>
+      </div>
+
+      {/* How It Works */}
+      <div>
+        <h2 className="text-lg font-semibold text-brand-white mb-4">
+          How It Works
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[
+            {
+              step: 1,
+              title: "Add Hustles",
+              desc: "Create your income streams and start logging",
+            },
+            {
+              step: 2,
+              title: "Track Money",
+              desc: "Log income and expenses for each hustle",
+            },
+            {
+              step: 3,
+              title: "Stay Ready",
+              desc: "Set goals, track taxes, export reports",
+            },
+          ].map((item) => (
+            <div
+              key={item.step}
+              className="bg-brand-card border border-brand-border rounded-xl p-5 flex flex-col items-center text-center"
+            >
+              <span className="w-10 h-10 rounded-full bg-brand-gold/20 text-brand-gold font-bold text-lg flex items-center justify-center mb-3">
+                {item.step}
+              </span>
+              <p className="font-semibold text-brand-white mb-1">
+                {item.title}
+              </p>
+              <p className="text-brand-muted text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Period Toggle */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h1 className="text-2xl font-bold text-brand-white">Dashboard</h1>
+        <h2 className="text-lg font-semibold text-brand-white">
+          Financial Summary
+        </h2>
         <PeriodToggle value={period} onChange={setPeriod} />
       </div>
 
